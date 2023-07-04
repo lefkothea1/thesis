@@ -18,6 +18,7 @@ import pandas as pd
 import numpy as np
 import datetime
 import os
+import matplotlib.pyplot as plt
 
 # pass in only numerical columns!
 def avg_n_rows_df (df, n):    
@@ -58,8 +59,8 @@ def make_gaze_direction_features(df2, name, condition, saving_dir):
     
     df = df2.copy()
     
-    fig = df[gaze_angle_cols].plot(kind='kde', title= name +'_'+ condition).get_figure() #2 plot distribution
-    fig.savefig(saving_dir +str(name)+'_'+ condition +'_gazeAngleDistrib.png') 
+    # fig = df[gaze_angle_cols].plot(kind='kde', title= name +'_'+ condition).get_figure() #2 plot distribution
+    # fig.savefig(saving_dir +str(name)+'_'+ condition +'_gazeAngleDistrib.png') 
     
     #if both angles closeto 0 (<0.1), then pp is looking straight
     df['gazeCenter'] = (df['gaze_angle_x'] < 0.15) & (df['gaze_angle_y'] < 0.15)
@@ -76,10 +77,9 @@ def make_gaze_direction_features(df2, name, condition, saving_dir):
     
     return df
 
-dir_in = 'D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\perSensor\\openFace_out\\testing\\'
+dir_in = 'D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\perSensor\\openFace_out\\retrying_problematic\\'
 
-
-dir_out = make_output_folder('aggr1min_processed_OpenFace')
+dir_out = make_output_folder('aggr1min_processed_OpenFace_pp6-7')
 # dir_out = make_output_folder('aggr1sec_processed_OpenFace')
 
 aggr_win = 30*60 #1min

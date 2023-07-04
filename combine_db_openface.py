@@ -48,13 +48,35 @@ def concat_1pp_typing_openface_1cond(db_file, face_file, cond):
         
         
 #has all pps inside, typing behavior aggregated per minute
-dir_db = 'D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\perSensor\\pp_db_AggregatedFeat_output20230602_16-51-26\\testing\\'
-dir_face = 'D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\perSensor\\openFace_out\\testing\\aggr1min_processed_OpenFace20230608_17-22-09\\'
-dir_out ='D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\allSesonrs_allPPs\\'
+dir_db = 'D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\perSensor\\pp_db_AggregatedFeat_output20230602_16-51-26\\'
+dir_face = 'D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\perSensor\\openFace_out\\retrying_problematic\\aggr1min_processed_OpenFace_pp6-720230616_14-03-32\\'
 
-db_filelist = ['allTables_pp02.xlsx', 'allTables_pp18.xlsx']
-face_filelist_neutral = ['pp02_N.csv', 'pp18_N.csv']
-face_filelist_stress = ['pp02_S.csv', 'pp18_S.csv']
+dir_out ='D:\\arxeia\\AI_VU\\THESIS_internship\\3-experimental\\data\\allSensors_allPPs     \\'
+
+# db_filelist = ['allTables_pp02.xlsx','allTables_pp03.xlsx', 'allTables_pp04.xlsx',\
+#                'allTables_pp05.xlsx','allTables_pp09.xlsx', 'allTables_pp11.xlsx',\
+#                 'allTables_pp12.xlsx','allTables_pp13.xlsx','allTables_pp15.xlsx',\
+#                 'allTables_pp16.xlsx','allTables_pp17.xlsx','allTables_pp18.xlsx',\
+#                 'allTables_pp19.xlsx','allTables_pp22.xlsx','allTables_pp23.xlsx',\
+#                 'allTables_pp24.xlsx','allTables_pp25.xlsx','allTables_pp26.xlsx']
+# db_filelist = ['allTables_pp06.xlsx', 'allTables_pp07.xlsx']  
+db_filelist = ['allTables_pp09.xlsx']  
+
+# face_filelist_neutral = ['pp02_N.csv', 'pp03_N.csv','pp04_N.csv','pp05_N.csv',\
+#                          'pp09_N.csv', 'pp11_N.csv','pp12_N.csv','pp13_N.csv',\
+#                         'pp15_N.csv','pp16_N.csv','pp17_N.csv','pp18_N.csv',\
+#                         'pp19_N.csv','pp22_N.csv', 'pp23_N.csv','pp24_N.csv',\
+#                         'pp25_N.csv','pp26_N.csv']
+# face_filelist_neutral = ['pp06_N.csv', 'pp07_N.csv']
+face_filelist_neutral = ['pp09_N.csv']
+
+# face_filelist_stress = ['pp02_S.csv','pp03_S.csv','pp04_S.csv', 'pp05_S.csv',\
+#                         'pp09_S.csv','pp11_S.csv','pp12_S.csv','pp13_S.csv',\
+#                         'pp15_S.csv','pp16_S.csv','pp17_S.csv','pp18_S.csv',\
+#                         'pp19_S.csv','pp22_S.csv','pp23_S.csv','pp24_S.csv',\
+#                         'pp25_S.csv','pp26_S.csv']
+# face_filelist_stress= ['pp06_S.csv', 'pp07_S.csv']
+face_filelist_stress= ['pp09_S.csv']
 
 if not len(db_filelist) == len(face_filelist_neutral) == len(face_filelist_stress):
     print('CHECK YOUR FILE LISTS, they dont match')
@@ -69,6 +91,8 @@ for i in range(len(db_filelist)):
     full_pp = pd.concat([pp_neutral, pp_stress], axis = 0)
     full_pp.to_csv(dir_out + ppNr + '_all1minData.csv', index = False)
     all_data = pd.concat([all_data, full_pp], axis=0) #gathering all conditions for all pps
-all_data.to_csv(dir_out + 'all_data.csv', index = False)
+all_data.to_csv(dir_out + 'all_data_pp9.csv', index = False)
+
+#CONSIDER TO ADD THE PP COL AND COND COLUMN LAST, SO THAT IT EXIST IN ALL THE ROWS -for ex pp5 has les rows 4 openface than typing, so problematic emptyh pp/cond rows in output
     
     
